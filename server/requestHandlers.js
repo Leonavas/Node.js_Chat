@@ -1,9 +1,9 @@
 function start() {
-  console.log("Request handler 'start' was called.");
+  console.log("[INFO] Request handler 'start' was called.");
 }
 
 function upload() {
-  console.log("Request handler 'upload' was called.");
+  console.log("[INFO] Request handler 'upload' was called.");
 }
 
 exports.start = start;
