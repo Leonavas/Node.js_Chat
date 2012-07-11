@@ -1,0 +1,40 @@
+<html>
+   <head>
+      <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+      <script>
+         var name = '';
+         
+         // at document read (runs only ones).
+         $(document).ready(function(){
+            // on click of the button (jquery thing)
+            // the things inside this clause happen only when 
+            // the button is clicked.
+            $("button").click(function(){
+            
+               $("p#log").html('sent message: ' + $("input#msg").val());
+               
+               $("p#data_recieved").append("<br />\r\n" + name + ': ' + $("input#msg").val());
+               
+               // then we empty the text on the input box.
+               $("input#msg").val('');
+            });
+            
+            // ask for the name of the user, ask again if no name.
+            while (name == '') {
+               name = prompt("What's your name?","");
+            }
+            
+            // send the name to the server, and the server's 
+            // register wait will recieve this.
+         });
+         
+         // listen for chat event and recieve data
+
+      </script>
+   </head>
+   <body>
+      <p id="data_recieved"></p>
+	  <p id="log"></p>
+	  <input type="text" id="msg"></input><button>Send</button>
+   </body>
+</html>
