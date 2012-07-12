@@ -1,10 +1,10 @@
 <html>
    <head>
-      <script src="http://192.168.0.158:8000/socket.io/socket.io.js"></script>
+      <script src="http://localhost:8000/socket.io/socket.io.js"></script>
       <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
       <script>
          var name = '';
-         var socket = io.connect('http://192.168.0.158:8000');
+         var socket = io.connect('http://localhost:8000');
 			
          // at document read (runs only ones).
          $(document).ready(function(){
@@ -55,14 +55,14 @@
 				// sends the message if ENTER is pressed and the message field is not empty
 				$("input#msg").keypress(function(event){
 					if(event.keyCode == 13){
-						if($("input#msg").val() != "") {
+						//if($("input#msg").val() != "") {
 							$("button#send").click();
-						}
+						//}
 					}
 				});
 				
 				// print data (jquery thing)
-            $("textarea#data_recieved").append("<br />\r\n" + getTimestamp() + data.msgr + ' ' + data.msg);
+            $("textarea#data_recieved").append("<br />\r\n" + getTimestamp() + data.msgr + ": " + data.msg);
             
 			});
 			
