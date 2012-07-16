@@ -1,4 +1,12 @@
 var io = require('socket.io').listen(8000);
+var color = require("./color");
+
+//returns a timestamp in format HH:mm
+function getTimestamp() {
+	var now = new Date();
+	var timestamp = "[" + now.getHours() + ":" + now.getMinutes() + "] ";
+	return timestamp
+}
 
 // open the socket connection
 io.sockets.on('connection', function (socket) {
@@ -22,7 +30,7 @@ io.sockets.on('connection', function (socket) {
       // from the original sender.
       socket.broadcast.emit('chat', {
          msg : data, 
-         msgr : sender
+         msgr : getTimestamp() + "<b>" + sender + "</b>"
       });
    });
    
@@ -38,10 +46,9 @@ io.sockets.on('connection', function (socket) {
       
          // this kind of emit will send to all! :D
          io.sockets.emit('chat', {
-            msg : "user " + name + ' conected!', 
-            msgr : "[Server]"
+            msg : "user " + name + ' conected!</b></font>', 
+            msgr : "<b><font color=red>" + getTimestamp() + "[Server]"
          });
       });
    });
-
 });

@@ -1,5 +1,6 @@
 <html>
    <head>
+		<link rel="stylesheet" type="text/css" href="../css/chat.css">
       <script src="http://localhost:8000/socket.io/socket.io.js"></script>
       <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
       <script>
@@ -30,7 +31,7 @@
                // recieve the emitted message. therefore we will
                // need to manually print this msg for the sender.
 
-               $("textarea#data_recieved").append("<br />\r\n" + getTimestamp() + name + ': ' + $("input#msg").val());
+               $("div#messagewindow").append("<br />\r\n" + getTimestamp() + "<b>" + name + ':</b> ' + $("input#msg").val());
                
                // then we empty the text on the input box.
                $("input#msg").val('');
@@ -55,14 +56,14 @@
 				// sends the message if ENTER is pressed and the message field is not empty
 				$("input#msg").keypress(function(event){
 					if(event.keyCode == 13){
-						//if($("input#msg").val() != "") {
+						if($("input#msg").val() != "") {
 							$("button#send").click();
-						//}
+						}
 					}
 				});
 				
 				// print data (jquery thing)
-            $("textarea#data_recieved").append("<br />\r\n" + getTimestamp() + data.msgr + ": " + data.msg);
+            $("div#messagewindow").append("<br/>\r\n" + data.msgr + ": " + data.msg);
             
 			});
 			
@@ -77,8 +78,8 @@
 	</head>
    <body>
 		<center><h2>Welcome to Remind Me</h2></center>
-		<textarea style="width:100%;height:70%" id="data_recieved" readonly="readonly" rows="30" cols="100"></textarea><br><br>
-		<input type="text" id="msg" name="msgField" size="50" ></input><button id="send">Send</button>
+		<div id="messagewindow"></div><br><br>
+		<input id="msg" name="msgField" size="50" ></input><button id="send">Send</button>
 		<p id="log"></p>
 	</body>
 </html>
