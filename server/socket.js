@@ -1,5 +1,4 @@
 var io = require('socket.io').listen(8000);
-var color = require("./color");
 
 //returns a timestamp in format HH:mm
 function getTimestamp() {
